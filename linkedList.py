@@ -25,6 +25,9 @@ class MyLinkedList(object):
         """
         Initialize your data structure here.
         """
+        self.head = None
+        self.tail = None
+        self.size = 0
     
     def __str__(self):
         return str(self.__class__) + ": " + str(self.__dict__)
@@ -35,6 +38,19 @@ class MyLinkedList(object):
         :type index: int
         :rtype: int
         """
+        if (index > self.size):
+            return -1
+        else if(index == 0):
+            return self.head.value
+        else:
+            countInd = 0
+            node = self.head
+            # keep traversing until you hit index
+            while(node is not None and countInd != index):
+                countInd += 1
+                node = node.next
+            
+            return node.value
         
 
     def addAtHead(self, val):

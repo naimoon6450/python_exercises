@@ -40,12 +40,12 @@ class MyLinkedList(object):
         """
         if (index > self.size):
             return -1
-        else if(index == 0):
+        elif (index == 0):
             return self.head.value
         else:
             countInd = 0
             node = self.head
-            # keep traversing until you hit index
+            # keep traversing until you hit index and not null
             while(node is not None and countInd != index):
                 countInd += 1
                 node = node.next
@@ -59,7 +59,22 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-        
+        newHead = Node(val)
+        self.size += 1
+        # if no head exists
+        if (self.head is None):
+            self.head = newHead
+            self.tail = newHead # stays on the first node created
+        else:
+            # hold head node
+            temp = self.head
+            # point old head prev val to new head
+            temp.prev = newHead
+            # point next of new head to old head
+            newHead.next = temp
+            # change head to new head
+            self.head = newHead
+
 
     def addAtTail(self, val):
         """
@@ -67,6 +82,18 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
+        newTail = Node(val)
+        self.size += 1
+        # if no node in list
+        if (self.tail is None):
+            self.head = newTail
+            self.tail = newTail
+        else:
+            # store tail in temp
+            temp = self.tail
+            temp.next = newTail
+            newTail.prev = temp
+            self.tail = newTail
         
 
     def addAtIndex(self, index, val):
@@ -76,7 +103,34 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-        
+        newNode = Node(val)
+        # if index is = size, then add to tail
+        if (self.size - 1 == index):
+            self.addAtTail(val)
+        elif (self.size == 0):
+            self.addAtHead(val)
+        elif (index > 0 and index < self.size):
+            # add in the middle if size exists
+            self.size += 1
+            indCounter = 1
+            traverseNode = self.head.next
+            while (traverseNode is not None):
+                # if index is hit then add the node
+                if (indCounter == index):
+                    temp = traverseNode
+                    newNode.next = temp
+                    newNode.prev = temp.prev
+                    # point previous node to new node
+                    temp.prev.next = newNode
+                    # point prev of current node to new node
+                    temp.prev = newNode
+                    # still need to continue going to end so jump over newly created node
+                    traverseNode = traverseNode.next
+                
+                indCounter += 1
+                traverseNode = traverseNode.next
+
+
 
     def deleteAtIndex(self, index):
         """
@@ -84,13 +138,66 @@ class MyLinkedList(object):
         :type index: int
         :rtype: None
         """
+        # if index = tail
+        if (index == self.size - 1):
+            self.size -= 1 
+            temp = self.tail
+            self.tail = temp.prev
+            temp.prev.next = None
+            temp.prev = None
+        elif (index == 0):
+            self.size -= 1
+            temp = self.head
+            self.head = temp.next
+            temp.next.prev = None
+            temp.next = None
+        elif (index > 0 and index < self.size):
+            indCounter = 1
+            traverseNode = self.head.next
+            while (traverseNode is not None):
+                # if index is hit then delete the node
+                if (indCounter == index):
+                    self.size -= 1
+                    temp = traverseNode
+                    # print(temp)
+                    temp = traverseNode
+                    temp.prev.next = temp.next
+                    temp.next.prev = temp.prev
+
+                    # change traverse node before nullified
+                    traverseNode = traverseNode.next
+                    temp.next = None
+                    temp.prev = None
+                
+                indCounter += 1
+                traverseNode = traverseNode.next
         
 
 
 # Your MyLinkedList object will be instantiated and called as such:
-# obj = MyLinkedList()
+obj = MyLinkedList()
 # param_1 = obj.get(index)
-# obj.addAtHead(val)
-# obj.addAtTail(val)
-# obj.addAtIndex(index,val)
-# obj.deleteAtIndex(index)
+obj.addAtHead(4)
+obj.addAtHead(5)
+obj.addAtTail(10)
+obj.addAtTail(20)
+# 5 -> 4 -> 10 -> 20
+# print(obj.head)
+# print(obj.head.next)
+# print(obj.head.next.next)
+# print(obj.head.next.next.next)
+obj.addAtIndex(3, 100)
+# print(obj.head)
+# print(obj.head.next)
+# print(obj.head.next.next)
+# print(obj.head.next.next.next)
+# print(obj.head.next.next.next.next)
+# 5 -> 4 -> 10 -> 20 -> 100
+# print(obj.head.next.next)
+obj.deleteAtIndex(3) # removes the 10
+# # 5 -> 4 -> 10 -> 20
+print(obj.head)
+print(obj.head.next)
+print(obj.head.next.next)
+print(obj.head.next.next.next)
+print(obj.head.next.next.next.next)

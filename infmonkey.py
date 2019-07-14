@@ -20,20 +20,17 @@ import random as rand
 
 
 # Write a function that prints out a breakdown of an integer into a sum of numbers that have just one non-zero digit. For example, given 43018 it should print 40000 + 3000 + 10 + 8.
-def breakDown(num):
-    result = ''
-    stringify = str(num)
-    listOfNums = list(stringify)
-    newListOfNums = [y for y in listOfNums if y != '0']
+# def breakDown(num):
+#     result = ''
+#     stringify = str(num)
+#     listOfNums = list(stringify)
+#     newListOfNums = [y for y in listOfNums if y != '0']
 
-    for ind in range(len(newListOfNums)):
-        result += str(newListOfNums[ind]) + str(0)*(len(newListOfNums)-(ind+1))
-        if (ind == len(newListOfNums) - 1):
-            result += '.'
-        else:
-            result += ' + '
+#     for ind in range(len(newListOfNums)):
+#         result += str(newListOfNums[ind]) + str(0)*(len(newListOfNums)-(ind+1))
+#         if (ind == len(newListOfNums) - 1):
+#             result += '.'
+#         else:
+#             result += ' + '
 
-    print(result)
-
-
-breakDown(43018)
+#     print(result)

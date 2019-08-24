@@ -38,7 +38,11 @@ class MyLinkedList(object):
         :type index: int
         :rtype: int
         """
-        if (index > self.size):
+        # if no head value
+        if (self.head is None):
+            return -1
+
+        if (index > self.size or index < 0):
             return -1
         elif (index == 0):
             return self.head.value
@@ -105,7 +109,7 @@ class MyLinkedList(object):
         """
         newNode = Node(val)
         # if index is = size, then add to tail
-        if (self.size - 1 == index):
+        if (self.size == index):
             self.addAtTail(val)
         elif (self.size == 0):
             self.addAtHead(val)
@@ -174,30 +178,22 @@ class MyLinkedList(object):
         
 
 
+
+# ["MyLinkedList","addAtHead","addAtTail","addAtIndex","get","deleteAtIndex","get"]
+# [[],[1],[3],[1,2],[1],[1],[1]]
 # Your MyLinkedList object will be instantiated and called as such:
 obj = MyLinkedList()
 # param_1 = obj.get(index)
-obj.addAtHead(4)
-obj.addAtHead(5)
-obj.addAtTail(10)
-obj.addAtTail(20)
-# 5 -> 4 -> 10 -> 20
-# print(obj.head)
-# print(obj.head.next)
-# print(obj.head.next.next)
-# print(obj.head.next.next.next)
-obj.addAtIndex(3, 100)
-# print(obj.head)
-# print(obj.head.next)
-# print(obj.head.next.next)
-# print(obj.head.next.next.next)
-# print(obj.head.next.next.next.next)
-# 5 -> 4 -> 10 -> 20 -> 100
-# print(obj.head.next.next)
-obj.deleteAtIndex(3) # removes the 10
-# # 5 -> 4 -> 10 -> 20
-print(obj.head)
+obj.addAtHead(1)
+# 1
+obj.addAtTail(3)
+# 1 -> 3
+obj.addAtIndex(1, 2)
 print(obj.head.next)
-print(obj.head.next.next)
-print(obj.head.next.next.next)
-print(obj.head.next.next.next.next)
+# 1 -> 2 -> 3
+obj.get(1)
+# 2
+obj.deleteAtIndex(1)
+# 1 -> 3
+obj.get(1)
+# 3

@@ -24,12 +24,14 @@ def findSum(targSum, arr):
         for cacheInd in range(len(cacheSum)):
             sum = arr[arrInd] + cacheSum[cacheInd]
             if (targSum == sum):
+                print(arr[arrInd], cacheSum[cacheInd])
+                print(cacheSum)
                 return True
             # if the sum > targSum then the sum will never be reached
             elif (sum < targSum):
                 cacheSum.append(sum)
     return False
 
-print(findSum(19, [1, 10, 5, 3]))
+print(findSum(14, [-4, 10, 5, 3, 6]))
 
 

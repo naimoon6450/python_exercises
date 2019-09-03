@@ -9,20 +9,20 @@ def shortestSub(arr):
     # outer loop
     for i in range(len(arr)):
         # inner loop going through prev sums
-        for j in range(len(initCounts)):
+        for j in range(i):
             # start comparing from second ind
             increasingBool = arr[i] > arr[j]
             # this ensures that the MAX is being updated with greatest length
             # and it's not part of a different sequence
             # You only want to + 1 IFF it's increasing and if 
             # [1, 0, 4, 10, 3] when it gets to 
-            subSeqBool = initCounts[j] + 1 > initCounts[i]
-            if (increasingBool and subSeqBool):
-                initCounts[i] += 1
+            # subSeqBool = initCounts[j] + 1 > initCounts[i]
+            if (increasingBool):
+                initCounts[i] = max(initCounts[i], initCounts[j] + 1)
     
-    print(initCounts)
+    return max(initCounts)
 
-shortestSub([-1, 5, 0, 10, 3, 12])
+print(shortestSub([-1, 5, 0, 10, 3, 12]))
 
 
 

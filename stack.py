@@ -103,5 +103,5 @@ def inToPost(input):
 
 
 
-inToPost('A+B-C')
+
     

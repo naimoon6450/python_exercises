@@ -8,10 +8,10 @@ Given an unsorted array arr[0..n-1] of size n, find the minimum length subarray 
 max = 40
 right =  
 [  0,   1,   15,   25,   6,   7,   30, 18,  40,   27]
-                                            max   right                                       
+                                            max    r                               
 
 [  0,   1,   2,   4,   6,   7,   30, 18,  40,   27]
-                                 r    min
+                                 lef  min
 
 Using stack
 index 2 is left bound

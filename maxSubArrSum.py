@@ -13,7 +13,7 @@ Do this in O(N) time.
 
 
 [34, -50, 42, 14, -5, 86]
-pt1    
+[34, -16, 42, 56, 51, 137]
 
 [34, -16, 42, 56, 51, 137] = max sums per index        
 [-1, -2, 20, 30, -4, -2]
@@ -43,28 +43,24 @@ Either you extend the current sum or START fresh at a different index
 """
 def maxSubArrSumPt(arr):
     # create the sum array
-    sumArr = [-float("inf")] * len(arr)
+    # sumArr = [-float("inf")] * len(arr)
+    sumArr = arr[0]
     # sums ending in index ind
-    for ind in range(len(arr)):
+    for ind in range(1, len(arr)):
         # update sumArr with appropriate max
         # for the first index the max is the number itself
-        if (ind == 0):
-            sumArr[0] = arr[ind]
-        else:
+        # if (ind == 0):
+        #     sumArr = arr[0]
+        # else:
             # current number in array vs prevmax + current (extension)
-            newMax = max(arr[ind], sumArr[ind-1] + arr[ind])
-            sumArr[ind] = newMax
-
-        # still goes backwards and makes it N^2
-        # for j in range(ind, -1, -1):
-        #     tempSum += arr[j]
-        #     sumArr[ind] = max(tempSum, sumArr[ind])
+            sumArr = max(arr[ind], sumArr + arr[ind])
+            # sumArr[ind] = newMax
     
-    return max(sumArr)
+    return sumArr
 
 
-# print(maxSubArrSumPt([-2,-1,-3,-4,-1,-2,-1,-5,-4]))
+print(maxSubArrSumPt([-2,-1,-3,-4,-1,-2,-1,-5,-4]))
 
         
-# maxSubArrSumPt([34, -50, 42, 14, -5, 86])
+# print(maxSubArrSumPt([34, -50, 42, 14, -5, 86]))
 

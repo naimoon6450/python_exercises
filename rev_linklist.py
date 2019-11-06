@@ -95,3 +95,74 @@ class Solution(object):
 #             temp2 = temp2.next
 
 #         return head
+
+
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+"""
+in O(1) space
+prev = null
+s = head
+f = head.next
+
+p  s    f
+   1 -> 2 -> 3 -> 4 -> 5 -> NULL
+
+        p    s   f
+NULL <- 1 <- 2 -> 3 -> 4 -> 5 -> NULL
+
+final result
+
+                            p    s    f
+NULL <- 1 <- 2 <- 3 -> 4 -> 5 -> NULL
+
+
+
+
+  5 -> 4 -> 3 -> 2 -> 1 -> NULL
+"""
+
+class RetryRevLL(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+
+        # recursive     
+        if (head is None or head.next is None):
+            return head
+        else:
+            # capture the returned node, which is 5 at first
+            returnedNode = self.reverseList(head.next)
+            # head will be at 4 first then 3 2 1 where returnNode will be at 5
+            head.next.next = returnedNode
+
+
+
+
+            
+
+
+        # prev = None
+        # slow = head
+        # fast = head.next
+
+        # while(slow.next is not None):
+        #     # change directions and move pointers
+        #     slow.next = prev
+        #     # set prev to where slow curr is
+        #     prev = slow
+        #     # set slow equal to next item which is currently fast
+        #     slow = fast
+        #     # move fast one
+        #     fast = fast.next
+        
+        # return head
+        
+revObj = new RetryRevLL()

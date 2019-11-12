@@ -1,0 +1,61 @@
+9, 4, 8, 8, 2, 1, 5, 7, 6, 3
+l                          r
+pivHelper([9, 4, 8, 8, 2, 1, 5, 7, 6, 3], 0, 9) => 9
+quickSortLeft([3, 4, 8, 8, 2, 1, 5, 7, 6, 9], 0, 8) left side in prog | pending right side
+    
+    pivHelper([3, 4, 8, 8, 2, 1, 5, 7, 6, 9], 0, 8) => 2
+    quickSortLeft([1, 2, 3, 8, 4, 8, 5, 7, 6, 9], 0, 1) left side in prog | pending right side
+    
+        pivHelper([1, 2, 3, 8, 4, 8, 5, 7, 6, 9], 0, 1) => 0
+        quickSortLeft([1, 2, 3, 8, 4, 8, 5, 7, 6, 9], 0, -1) => left side in prog | pending right side
+            left > right now return [1, 2, 3, 8, 4, 8, 5, 7, 6, 9]
+        quickSortRight([1, 2, 3, 8, 4, 8, 5, 7, 6, 9], 1 which is piv + 1, 1 which is right)
+            left = right now return [1, 2, 3, 8, 4, 8, 5, 7, 6, 9]
+    
+    quickSortRight([1, 2, 3, 8, 4, 8, 5, 7, 6, 9], 3 which is piv + 1, 8)
+        pivHelper([1, 2, 3, 8, 4, 8, 5, 7, 6, 9], 3, 8) => 7
+        quickSortLeft([1, 2, 3, 6, 4, 5, 7, 8, 8, 9], 3, 6) => left side in prog | pending right side
+            pivHelper([1, 2, 3, 6, 4, 5, 7, 8, 8, 9], 3, 6) => 5
+            quickSortLeft([1, 2, 3, 5, 4, 6, 7, 8, 8, 9], 3, 4) => left side in prog | pending right side
+                pivHelper([1, 2, 3, 4, 5, 6, 7, 8, 8, 9], 3, 4) => 4
+                quickSortLeft([1, 2, 3, 4, 5, 6, 7, 8, 8, 9], 3, 3) => left side in prog | pending right side
+                    left = right now return [1, 2, 3, 4, 5, 6, 7, 8, 8, 9]
+                quickSortRight([1, 2, 3, 4, 5, 6, 7, 8, 8, 9], 5, 4)
+                    left > right now return [1, 2, 3, 4, 5, 6, 7, 8, 8, 9]
+            quickSortRight([1, 2, 3, 4, 5, 6, 7, 8, 8, 9], 6, 6)
+                left = right now return [1, 2, 3, 4, 5, 6, 7, 8, 8, 9]
+        quickSortRight([1, 2, 3, 4, 5, 6, 7, 8, 8, 9], 8, 8)
+            left = right now return [1, 2, 3, 4, 5, 6, 7, 8, 8, 9]
+
+        return [1, 2, 3, 4, 5, 6, 7, 8, 8, 9]
+    
+quickSortRight([1, 2, 3, 4, 5, 6, 7, 8, 8, 9], 10, 9)
+    left > right so return [1, 2, 3, 4, 5, 6, 7, 8, 8, 9]
+
+
+9, 4, 2, 8 
+l        r
+
+pivHelper([9, 4, 2, 8], 0, 3)
+    Returns 3 and changes array to [8,4,2,9]
+    
+    quickSortLeft([8,4,2,9], 0, 2)
+        pivHelper([8,4,2,9], 0, 2)
+            returns 2 and changes array to [2,4,8,9]
+            
+            quickSortLeft([2,4,8,9], 0, 1)
+                pivHelper([2,4,8,9], 0, 1)
+                    returns 0 and changes array to [2,4,8,9]
+                    quickSortLeft([2,4,8,9], 0, 0)
+                        left = right so returns [2,4,8,9]
+                    quickSortRight([2,4,8,9], -1, 0)
+                        left < right returns [2,4,8,9]
+            quickSortRight([2,4,8,9], 1, 2)
+                left < right returns [2,4,8,9]
+    quickSortRight([2,4,8,9], 2, 3)
+        left < right returns [2,4,8,9]
+    
+    Returns the sorted array
+
+                
+                

@@ -99,9 +99,68 @@ def inToPost(input):
             # check for parens
             
             # else check for precendence of top of stack and current char
-            elif (precedenceDict[char] > precedenceDict[operatorStack.peek()]):
+            # elif (precedenceDict[char] > precedenceDict[operatorStack.peek()]):
 
 
 
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+    def __str__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)
 
     
+# SLL stack implementation
+class LinkedStack:
+    def __init__(self):
+        self.first = None
+        self.last = None
+        self.size = 0
+    
+    def __str__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)
+
+    
+    def push(self, val):
+        node = Node(val)
+        if self.size == 0:
+            self.first = node
+            self.last = node
+        else:
+            node.next = self.first
+            self.first = node
+        
+        self.size += 1
+        return self.size
+    
+    def pop(self):
+        if self.first is None:
+            return None
+        
+        popNode = self.first
+        if self.first is self.last:
+            # update to None if there was one left
+            self.last = None
+        
+        # otherwise move first to next
+        else:
+            self.first = self.first.next
+        
+        self.size -= 1
+        
+        return popNode.val
+
+lstack = LinkedStack()
+print(lstack.push(10))
+print(lstack.push(12))
+print(lstack.push(0))
+print(lstack.pop())
+print(lstack.pop())
+print(lstack.pop())
+
+
+
+

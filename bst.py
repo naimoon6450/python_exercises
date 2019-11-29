@@ -6,8 +6,10 @@ class Node:
         self.right = None
         self.left = None
     
-    def __str__(self):
-        return str(self.__class__) + ": " + str(self.__dict__)
+    def __repr__(self):
+        return "Node: %s" % self.value
+    # def __str__(self):
+    #     return str(self.__class__) + ": " + str(self.__dict__)
 
 class BST:
     def __init__(self, root):
@@ -15,7 +17,7 @@ class BST:
         self.size = 1
 
     def __str__(self):
-        return str(self.__class__) + ": " + str(self.__dict__)
+        return "BST " + str(self.__dict__)
 
     def insert(self, node):
         if(node is None):
@@ -61,11 +63,12 @@ root = Node(5)
 node2 = Node(4)
 node3 = Node(2)
 node4 = Node(1)
-
+print(root)
 
 newBST = BST(root)
 newBST.insert(node2)
 newBST.insert(node3)
 newBST.insert(node4)
 
-print(maxDepthGivenNode(newBST.root.left))
+print(newBST)
+# print(maxDepthGivenNode(newBST.root.left))

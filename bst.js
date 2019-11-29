@@ -60,5 +60,47 @@ bst.insert(20);
 bst.insert(8);
 bst.insert(9);
 bst.insert(25);
-console.log(bst.find(bst.root, 200));
-// console.log(bst);
+bst.insert(4);
+bst.insert(18);
+
+const BFS = root => {
+  let visited = [];
+  let q = [root];
+
+  // key is to understand that you can traverse what gets added into the QUEUE vs thinking recursively
+
+  while (q.length > 0) {
+    // ref to the curr top elem in q
+    let deqNode = q.shift();
+    // push deqNode into visited
+    visited.push(deqNode.val);
+    // check if deqNode has right or left children
+    if (deqNode.left || deqNode.right) {
+      q.push(deqNode.left);
+      q.push(deqNode.right);
+    }
+  }
+
+  return visited;
+};
+
+// console.log(BFS(bst.root));
+
+const DFS = root => {
+  let visited = [];
+
+  if (!root) {
+    return;
+  } else {
+    if (root.left) {
+      visited = visited.concat(DFS(root.left));
+    }
+    visited.push(root.val);
+    if (root.right) {
+      visited = visited.concat(DFS(root.right));
+    }
+  }
+  return visited;
+};
+
+console.log(DFS(bst.root));

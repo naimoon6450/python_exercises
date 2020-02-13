@@ -1,2 +1,3 @@
 .cache
 FlaskProjs/*
+__pycache__/
